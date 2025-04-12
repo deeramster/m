@@ -9,12 +9,12 @@
 - Интеграция с Hadoop и Spark для обработки данных
 
 ## Основные компоненты
--docker-compose.yml - описание всей инфраструктуры
--generate-certs.sh - генерация SSL-сертификатов
--setup_acls.sh - настройка прав доступа
--run-infra.sh - основной скрипт запуска
--deploy_kafka_connect.sh - управление коннекторами MirrorMaker
--mm2-*.json - конфигурации коннекторов MirrorMaker 2.0
+- docker-compose.yml - описание всей инфраструктуры
+- generate-certs.sh - генерация SSL-сертификатов
+- setup_acls.sh - настройка прав доступа
+- run-infra.sh - основной скрипт запуска
+- deploy_kafka_connect.sh - управление коннекторами MirrorMaker
+- mm2-*.json - конфигурации коннекторов MirrorMaker 2.0
 
 ## Последовательность развертывания
 1. **Запуск инфраструктуры**
@@ -44,13 +44,13 @@
    ```
 5. **Развертывание MirrorMaker 2.0**
 Поддерживаются следующие операции
--deploy
+- deploy
   первоначальная настройка
--undeploy
+- undeploy
   откат настройки
--redeploy
+- redeploy
   модификация (наприме, при добавлении нового топика для зеркалирования)
--status
+- status
   статус настройки
 
    ```bash
@@ -65,50 +65,50 @@
    ./deploy_kafka_connect.sh status source-0
    ```
 2. **Доступ к интерфейсам**
--Kafka UI: http://localhost:8080
--Grafana: http://localhost:3000 (логин: admin, пароль: grafana)
--Prometheus: http://localhost:9090
+- Kafka UI: http://localhost:8080
+- Grafana: http://localhost:3000 (логин: admin, пароль: grafana)
+- Prometheus: http://localhost:9090
 
 ## Доступы ##
 1. **client-api (CN=client-api.kafka.ssl)**
 Права на топик filtered_products (source):
--Read
--Describe
+- Read
+- Describe
 Права на топик client_search (source):
--Create
--Alter
--Write
--Read
--Describe
+- Create
+- Alter
+- Write
+- Read
+- Describe
 Права на топик analytics (target):
--Read
--Describe
+- Read
+- Describe
 2. **shop-api (CN=shop-api.kafka.ssl)**
 Права на топик products (source):
--Create
--Alter
--Write
--Read
--Describe
+- Create
+- Alter
+- Write
+- Read
+- Describe
 Права на топик filtered_products (target):
--Create
--Alter
--Write
--Read
--Describe
+- Create
+- Alter
+- Write
+- Read
+- Describe
 Права на топик analytics (target):
--Create
--Alter
--Write
--Read
--Describe
+- Create
+- Alter
+- Write
+- Read
+- Describe
 
 ## Замечания ##
 ### Перед развертыванием MirrorMaker убедитесь, что:
-    -Топик filtered_products существует в source-кластере
-    -Оба кластера (source и target) работают
+    - Топик filtered_products существует в source-кластере
+    - Оба кластера (source и target) работают
       В композе настроен healthcheck в колонке Status должно быть примерно так Up 7 hours (healthy)
-    -Настроены все необходимые ACL
+    - Настроены все необходимые ACL
 ### Для отладки можно использовать команды:
    ```bash
    # Просмотр логов Kafka Connect
